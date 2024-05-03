@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educational Quiz</title>
+  <style>
+  
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('space2.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      
+    }
+
+    header {
+      background-image: url('header-background.jpg');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    section, footer {
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    button.correct {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    button.incorrect {
+      background-color: #FF0000;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Space Quiz</h1>
+  </header>
+
+  <section>
+    <h2>Welcome to the Space Quiz!</h2>
+    <p>This quiz will test your knowledge about space!</p>
+  </section>
+
+  <section>
+    <h2>Quiz Questions</h2>
+    <div>
+      <div>
+        <p>Which is the smallest planet of our solar system?</p>
+        <button data-correct="Mercury" onclick="checkAnswer(this)">Venus</button>
+        <button data-correct="Mercury" onclick="checkAnswer(this)">Mercury</button>
+        <button data-correct="Mercury" onclick="checkAnswer(this)">Mars</button>
+    </div>
+    <div>
+        <p>Which planet is the coldest in our solar system?</p>
+        <button data-correct="Uranus" onclick="checkAnswer(this)">Jupiter</button>
+        <button data-correct="Uranus" onclick="checkAnswer(this)">Uranus</button>
+        <button data-correct="Uranus" onclick="checkAnswer(this)">Neptune</button>
+    </div>
+    <div>
+        <p>Which of the following planets have no moon?</p>
+        <button data-correct="Venus" onclick="checkAnswer(this)">Venus</button>
+        <button data-correct="Venus" onclick="checkAnswer(this)">Saturn</button>
+        <button data-correct="Venus" onclick="checkAnswer(this)">Earth</button>
+    </div>
+    <div>
+        <p>Which is the hottest planet in our solar system?</p>
+        <button data-correct="Venus" onclick="checkAnswer(this)">Venus</button>
+        <button data-correct="Venus" onclick="checkAnswer(this)">Pluto</button>
+        <button data-correct="Venus" onclick="checkAnswer(this)">Saturn</button>
+    </div>
+</div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Space Quiz. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // JavaScript
+    function checkAnswer(button) {
+      var selectedAnswer = button.innerText;
+      var correctAnswer = button.getAttribute('data-correct');
+      if (selectedAnswer === correctAnswer) {
+        button.classList.add('correct');
+        alert('Correct!');
+      } else {
+        button.classList.add('incorrect');
+        var correctButton = button.parentElement.querySelector('[data-correct="' + correctAnswer + '"]');
+        correctButton.classList.add('correct');
+        alert('Incorrect. The correct answer is ' + correctAnswer);
+      }
+      var buttons = button.parentElement.querySelectorAll('button');
+      buttons.forEach(function(btn) {
+        if (btn !== button) {
+          btn.disabled = true;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
